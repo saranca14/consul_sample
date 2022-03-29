@@ -117,18 +117,18 @@ retry_join = ["provider=aws tag_key=\"${PROJECT_TAG}\" tag_value=\"${PROJECT_VAL
 
 **5. GUI of Consul**
 
-GUI of Consul server cluster is accessed using ALB endpoint:
+**GUI of Consul server cluster is accessed using ALB endpoint:**
 <img width="1438" alt="image" src="https://user-images.githubusercontent.com/61488445/160548426-b5a86e44-7a48-4716-b768-4abbfe6b1a13.png">
 
-Shows the nodes:
+**Shows the nodes:**
 <img width="1101" alt="image" src="https://user-images.githubusercontent.com/61488445/160548481-e463f75c-5208-42a4-ae72-520f749edc69.png">
 
-Shows the Health status of each nodes:
+**Shows the Health status of each nodes:**
 <img width="777" alt="image" src="https://user-images.githubusercontent.com/61488445/160548554-ac823d92-95ee-456d-a7cc-5888b4e2f761.png">
 
 **6. Maintanence of HCP consul**
 
-Command: consul maint
+**Command: consul maint**
 
 The maint command provides control of service maintenance mode. Using the command, it is possible to mark a service provided by a node or all the services on the node as a whole as "under maintenance". In this mode of operation, the service will not appear in DNS query results, or API results. This effectively takes the service out of the pool of available "healthy" nodes of a service.
 
@@ -136,5 +136,13 @@ Under the hood, maintenance mode is activated by registering a health check in c
 
 The table below shows this command's required ACLs. Configuration of blocking queries and agent caching are not supported from commands, but may be from the corresponding HTTP endpoint.
 
+**Command Options**
 
+    -enable - Enable node-wide maintenance mode flag. If combined with the -service flag, we operate on a specific service ID instead. Node and service maintenance flags are independent.
+
+    -disable - Disable the node-wide maintenance flag. If combined with the -service flag, we operate on a specific service ID instead. Node and service maintenance flags are independent.
+
+    -reason - An optional reason for placing the service into maintenance mode. If provided, this reason will be visible in the newly- registered critical check's "Notes" field.
+
+    -service - An optional service ID to control maintenance mode for a given service. By providing this flag, the -enable and -disable flags functionality is modified to operate on the given service ID.
 
