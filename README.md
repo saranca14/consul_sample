@@ -56,3 +56,13 @@ desired_capacity = var.server_desired_count
 min_size = var.server_min_count
 max_size = var.server_max_count
 ```
+**4. Terraform for deployment**
+
+Terraform is a powerful IaC tool used here to automate the Consul deployment. This helps to easily recreate same environments and deployments in short span.Currently Module is available for Consul and not used in this deployments. This code can be further enhanced with integrating modules.
+
+Terraform code has below files:
+```
+1. **vpc.tf** :> This template creates the VPC with 3 public subnets and 3 private subnets, Internet gateway, Associated Route tables and NAT gateway.
+2. **vpc-sg.tf** :> This template creates Security group and rules for Consul server, Consul clients. (New Security groups can be added if new clients/bastion host is introduced).
+3. 
+```
