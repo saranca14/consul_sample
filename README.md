@@ -154,6 +154,8 @@ The table below shows this command's required ACLs. Configuration of blocking qu
 3. Using CLI or REST API: Maintanence mode can be set for nodes.
 4. AWS Autoscaling has a fetaure to put instance in stand-by for any kind of maintanence. Instance that is in the InService state into the Standby state, update or troubleshoot the instance, and then return the instance to service. Instances that are on standby are still part of the Auto Scaling group, but they do not actively handle load balancer traffic.This feature helps to stop and start the instances or reboot them without worrying about Amazon EC2 Auto Scaling terminating the instances as part of its health checks or during scale-in events.
 
+Automated scheduling of Node maintanence is possible using 'ASG-scheduled actions' coupled with scripts with maint commands. By using this we can schedule regular maintanence during non-business hours.
+
 **7. Cost Estimate**
 
 Below is the AWS sizing recommendation for large production grade Consul cluster:
@@ -179,6 +181,4 @@ https://calculator.s3.amazonaws.com/index.html#r=IAD&key=files/calc-947ed536a123
 1. Recommended deploying 5 nodes within the Consul cluster distributed between three availability zones as this architecture can withstand the loss of two nodes from within the cluster or the loss of an entire availability zone.
 2. Server agents are generally I/O bound for writes and CPU bound for reads. Additionally, larger environments may require additional tuning (e.g. raft multiplier) for optimal performance.
 3. A Monitoring tool is configured for setting thresholds and alerts.
-
-
 
