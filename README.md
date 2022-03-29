@@ -126,4 +126,15 @@ Shows the nodes:
 Shows the Health status of each nodes:
 <img width="777" alt="image" src="https://user-images.githubusercontent.com/61488445/160548554-ac823d92-95ee-456d-a7cc-5888b4e2f761.png">
 
+**6. Maintanence of HCP consul**
+
+Command: consul maint
+
+The maint command provides control of service maintenance mode. Using the command, it is possible to mark a service provided by a node or all the services on the node as a whole as "under maintenance". In this mode of operation, the service will not appear in DNS query results, or API results. This effectively takes the service out of the pool of available "healthy" nodes of a service.
+
+Under the hood, maintenance mode is activated by registering a health check in critical status against a service, and deactivated by deregistering the health check.
+
+The table below shows this command's required ACLs. Configuration of blocking queries and agent caching are not supported from commands, but may be from the corresponding HTTP endpoint.
+
+
 
