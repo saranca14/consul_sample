@@ -105,3 +105,25 @@ advertise_addr = "$local_ip"
 retry_join = ["provider=aws tag_key=\"${PROJECT_TAG}\" tag_value=\"${PROJECT_VALUE}\""]
 ```
 3. Start and enable Consul service.
+
+**Deployment steps:**
+1. Clone the git repository (Integration with tools such as Jenkins and using GitOps framework is planned for future enhancement).
+2. Switch to terraform path/repository directory.
+3. terraform init (Initializing the provider/module/backend plugins)
+4. terraform plan (Shows the blueprint of Solution to be deployed)
+5. terraform apply -auto-approve (Implements the solution in AWS cloud)
+6. terraform show (Shows high level information from state file)
+7. terraform destroy (For destroying the solution)
+
+**5. GUI of Consul**
+
+GUI of Consul server cluster is accessed using ALB endpoint:
+<img width="1438" alt="image" src="https://user-images.githubusercontent.com/61488445/160548426-b5a86e44-7a48-4716-b768-4abbfe6b1a13.png">
+
+Shows the nodes:
+<img width="1101" alt="image" src="https://user-images.githubusercontent.com/61488445/160548481-e463f75c-5208-42a4-ae72-520f749edc69.png">
+
+Shows the Health status of each nodes:
+<img width="777" alt="image" src="https://user-images.githubusercontent.com/61488445/160548554-ac823d92-95ee-456d-a7cc-5888b4e2f761.png">
+
+
