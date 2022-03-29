@@ -146,3 +146,9 @@ The table below shows this command's required ACLs. Configuration of blocking qu
 
     -service - An optional service ID to control maintenance mode for a given service. By providing this flag, the -enable and -disable flags functionality is modified to operate on the given service ID.
 
+Handling Maintanence of Consul:
+
+1. At the initial startup of nodes, Install Consul, send a maintenance mode API request and then proceed to install services would be one way to achieve this.
+2. Check if a node is in maintenance via http://URL:8500/v1/health/node/name_of_node. If the node is in maintenance mode, then the output will contain an entry with the check ID _node_maintenance.
+3. Using CLI or REST API: Maintanence mode can be set for nodes.
+4. AWS Autoscaling has a fetaure to put instance in stand-by for any kind of maintanence. Instance that is in the InService state into the Standby state, update or troubleshoot the instance, and then return the instance to service. Instances that are on standby are still part of the Auto Scaling group, but they do not actively handle load balancer traffic.This feature helps to stop and start the instances or reboot them without worrying about Amazon EC2 Auto Scaling terminating the instances as part of its health checks or during scale-in events.
