@@ -62,7 +62,11 @@ Terraform is a powerful IaC tool used here to automate the Consul deployment. Th
 
 Terraform code has below files:
 ```
-1. **vpc.tf** :> This template creates the VPC with 3 public subnets and 3 private subnets, Internet gateway, Associated Route tables and NAT gateway.
-2. **vpc-sg.tf** :> This template creates Security group and rules for Consul server, Consul clients. (New Security groups can be added if new clients/bastion host is introduced).
-3. 
+1. vpc.tf :> This template creates the VPC with 3 public subnets and 3 private subnets, Internet gateway, Associated Route tables and NAT gateway.
+2. vpc-sg.tf :> This template creates Security group and rules for Consul server, Consul clients. (New Security groups can be added if new clients/bastion host is introduced).
+3. iam.tf :> This template includes IAM profile, Roles and policy creation.
+4. ec2-asg.tf :> This template includes Auto scaling definition for Consul servers and Consul clients.
+5. ec2-launch-templates.tf :> Launch template for ASG is defined for both Consul servers and clients.
+6. main.tf :> Provider block and data source for Availability zones, region etc
+7. Scripts: 2 files each for Consul server and Consul client install+ configuration. This is passed as user data.
 ```
