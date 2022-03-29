@@ -75,7 +75,7 @@ resource "aws_launch_template" "consul_client_web" {
     { "Project" = var.main_project_tag }
   )
 
-  user_data = base64encode(templatefile("${path.module}/scripts/client-web.sh", {
+  user_data = base64encode(templatefile("${path.module}/scripts/client.sh", {
     PROJECT_TAG   = "Project"
     PROJECT_VALUE = var.main_project_tag
   }))
