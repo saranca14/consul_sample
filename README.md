@@ -16,13 +16,9 @@ Contents:
 
 HCP Consul is a secure, resilient service mesh which enables platform operators to quickly deploy a fully managed, secure-by-default service mesh, helping developers discover and securely connect any application.
 It offers:
-• Service registry and health monitoring, to provide a real-time directory of all services
-with their health status
-• Network middleware automation, with service discovery for dynamic reconfiguration as
-services scale up, scale down, or move
-• Zero Trust network with service mesh, to secure service-to-service traffic with identity-
-based security policies and encrypted traffic with Mutual-Transport Layer Security
-(TLS)
+1. Service registry and health monitoring, to provide a real-time directory of all services with their health status.
+2. Network middleware automation, with service discovery for dynamic reconfiguration as services scale up, scale down, or move.
+3. Zero Trust network with service mesh, to secure service-to-service traffic with identity-based security policies and encrypted traffic with Mutual Transport Layer Security.
 
 **2. High Availability architecture**
 
@@ -47,7 +43,15 @@ A virtual private cloud (VPC) configured with public and private subnets across 
 **3. Scaling for Consul**
 
 Auto scaling is enabled for Consul server cluster with each nodes in atleast 3 distinct availability zones for achieving high availability and Fault tolerance. Autocaling is attached to Application load balancer with target groups listening to port 8500. 
-Health check for target group enabled and shows health status in dashboard. 
+Health check for target group enabled and shows health status in dashboard:
 <img width="1068" alt="image" src="https://user-images.githubusercontent.com/61488445/160544761-b8f23d43-4440-4bdc-a654-b9974e17d9a0.png">
 
+Load balancer endpoint DNS is used for accessing Consul GUI:
+<img width="1095" alt="image" src="https://user-images.githubusercontent.com/61488445/160545056-57f39bbf-789c-4d7f-a479-5adf9b67391c.png">
 
+Autoscaling parameters such as shown below is set as variables in terraform code with default value set to 5.
+```
+desired_capacity = var.server_desired_count
+min_size = var.server_min_count
+max_size = var.server_max_count
+```
