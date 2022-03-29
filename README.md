@@ -90,3 +90,18 @@ bootstrap_expect=${BOOTSTRAP_NUMBER}
 retry_join = ["provider=aws tag_key=\"${PROJECT_TAG}\" tag_value=\"${PROJECT_VALUE}\""]
 ```
 3. Start and enable Consul service.
+
+**client.sh**
+1. Install Consul package.
+2. Modify the default consul.hcl file with below parameters:
+```
+data_dir = "/opt/consul"
+client_addr = "0.0.0.0"
+server = false
+log_level           = "INFO"
+ui                  = true
+bind_addr = "0.0.0.0"
+advertise_addr = "$local_ip"
+retry_join = ["provider=aws tag_key=\"${PROJECT_TAG}\" tag_value=\"${PROJECT_VALUE}\""]
+```
+3. Start and enable Consul service.
