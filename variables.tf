@@ -59,7 +59,7 @@ variable "ec2_key_pair_name" {
 variable "server_desired_count" {
   description = "The desired number of consul servers.  For Raft elections, should be an odd number."
   type        = number
-  default     = 3
+  default     = 5
 }
 
 variable "server_min_count" {
@@ -71,7 +71,7 @@ variable "server_min_count" {
 variable "server_max_count" {
   description = "The maximum number of consul servers."
   type        = number
-  default     = 3
+  default     = 5
 }
 
 ## Consul Web Clients

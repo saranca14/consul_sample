@@ -70,7 +70,7 @@ resource "aws_lb" "alb_web" {
 ## Target Group
 resource "aws_lb_target_group" "alb_targets_web" {
   name_prefix          = "csulw-"
-  port                 = 9090
+  port                 = 8500
   protocol             = "HTTP"
   vpc_id               = aws_vpc.consul.id
   deregistration_delay = 30
