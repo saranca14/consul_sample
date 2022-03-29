@@ -69,4 +69,24 @@ Terraform code has below files:
 5. ec2-launch-templates.tf :> Launch template for ASG is defined for both Consul servers and clients.
 6. main.tf :> Provider block and data source for Availability zones, region etc
 7. Scripts: 2 files each for Consul server and Consul client install+ configuration. This is passed as user data.
+8. Variables.tf :> Variables are defined in this file.
 ```
+
+Two scripts : server.sh and client.sh
+
+**server.sh**
+1. Install Consul package.
+2. Modify the default consul.hcl file with below parameters:
+```
+data_dir = "/opt/consul"
+client_addr = "0.0.0.0"
+ui_config{
+  enabled = true
+}
+server = true
+bind_addr = "0.0.0.0"
+advertise_addr = "$local_ip"
+bootstrap_expect=${BOOTSTRAP_NUMBER}
+retry_join = ["provider=aws tag_key=\"${PROJECT_TAG}\" tag_value=\"${PROJECT_VALUE}\""]
+```
+3. Start and enable Consul service.
