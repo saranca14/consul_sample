@@ -10,6 +10,7 @@ Contents:
 6. Maintanence of HCP consul
 7. Cost Estimate
 8. Future developments
+9. Best practices
 ```
 
 **1. HCP Consul**
@@ -155,9 +156,29 @@ The table below shows this command's required ACLs. Configuration of blocking qu
 
 **7. Cost Estimate**
 
+Below is the AWS sizing recommendation for large production grade Consul cluster:
+
 <img width="816" alt="image" src="https://user-images.githubusercontent.com/61488445/160551939-1082510b-6bff-4d6a-a568-b0f50a1948ab.png">
 
 AWS Calculator link:
 https://calculator.s3.amazonaws.com/index.html#r=IAD&key=files/calc-947ed536a123f59c1d73a63ec20b63ad69a8f087&v=ver20220323cA
+
+1. Since AWS recommends the intstance family M5. RI with 3 year, no upfront and convertible is the best cost effective option deploying Consul using EC2 servers. Instance type can be easily upgraded and also horizontal scaling using ASG.
+
+**Note**: All component costs are not included in this calculator. It requires extensive testing to determine all components and sizing.
+
+**8. Future developments**
+
+1. Integrating Consul automated deployment using GitOps framework for better visibility and better maintanence of code.
+2. Integrating with tools such as circleCI or jenkins for automated deployment.
+3. Using EKS/ECS for Consul cluster.
+4. Use of availble terraform consul modules.
+
+**9. Best practices**
+
+1. Recommended deploying 5 nodes within the Consul cluster distributed between three availability zones as this architecture can withstand the loss of two nodes from within the cluster or the loss of an entire availability zone.
+2. Server agents are generally I/O bound for writes and CPU bound for reads. Additionally, larger environments may require additional tuning (e.g. raft multiplier) for optimal performance.
+3. A Monitoring tool is configured for setting thresholds and alerts.
+
 
 
